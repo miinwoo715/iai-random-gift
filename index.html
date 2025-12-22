@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IAI RANDOM GIFT</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Firebase SDK (script 방식, 중요) -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDIvbI3CtVPs-zn0edEp41vsVSurE1y0y4",
+      authDomain: "iai-random-gift.firebaseapp.com",
+      databaseURL: "https://iai-random-gift-default-rtdb.firebaseio.com",
+      projectId: "iai-random-gift",
+      storageBucket: "iai-random-gift.firebasestorage.app",
+      messagingSenderId: "457245345762",
+      appId: "1:457245345762:web:f8aba5c21b5c4181cd5bbb"
+    };
+
+    // 🔥 이 한 줄이 핵심
+    firebase.initializeApp(firebaseConfig);
+  </script>
+
+  <!-- app.js는 항상 Firebase 뒤 -->
+  <script defer src="app.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <!-- 로고 -->
+    <img src="logo.png" alt="IAI RANDOM GIFT" class="logo">
+
+    <p>IAI Random Gift</p>
+
+    <!-- 이름 선택 -->
+    <label>내 이름은?</label>
+    <select id="myName">
+      <option value="">-- 선택 --</option>
+      <option>이수영교수님</option>
+      <option>동원</option>
+      <option>창현</option>
+      <option>영태</option>
+      <option>재륜</option>
+      <option>민우</option>
+      <option>형배</option>
+      <option>동현</option>
+      <option>훈형</option>
+      <option>성민</option>
+      <option>정우</option>
+      <option>기호</option>
+      <option>유진</option>
+    </select>
+
+    <!-- 추첨 버튼 -->
+    <button id="submitBtn">추첨 시작</button>
+
+    <!-- 힌트 출력 영역 -->
+    <p id="msg"></p>
+  </div>
+</body>
+</html>
