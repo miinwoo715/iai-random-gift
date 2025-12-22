@@ -28,21 +28,11 @@ document.addEventListener("DOMContentLoaded", () => {
     stateRef.set({
       phase: "WAIT", // WAIT | DRAW | REROLL
       rerollTargets: [],
-      giftPool: [
-        { key: 11, hint: "11번 힌트입니다.", assignedTo: null },
-        { key: 12, hint: "12번 힌트입니다.", assignedTo: null },
-        { key: 13, hint: "13번 힌트입니다.", assignedTo: null },
-        { key: 14, hint: "14번 힌트입니다.", assignedTo: null },
-        { key: 15, hint: "15번 힌트입니다.", assignedTo: null },
-        { key: 16, hint: "16번 힌트입니다.", assignedTo: null },
-        { key: 17, hint: "17번 힌트입니다.", assignedTo: null },
-        { key: 18, hint: "18번 힌트입니다.", assignedTo: null },
-        { key: 19, hint: "19번 힌트입니다.", assignedTo: null },
-        { key: 20, hint: "20번 힌트입니다.", assignedTo: null },
-        { key: 21, hint: "21번 힌트입니다.", assignedTo: null },
-        { key: 22, hint: "22번 힌트입니다.", assignedTo: null },
-        { key: 23, hint: "23번 힌트입니다.", assignedTo: null }
-      ]
+      giftPool: CONFIG.gifts.map(g => ({
+        key: g.key,
+        hint: g.hint,
+        assignedTo: null
+      }))
     });
   });
 
