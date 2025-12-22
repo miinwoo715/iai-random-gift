@@ -41,20 +41,18 @@
     <label>내 이름은?</label>
     <select id="myName">
       <option value="">-- 선택 --</option>
-      <option>이수영교수님</option>
-      <option>동원</option>
-      <option>창현</option>
-      <option>영태</option>
-      <option>재륜</option>
-      <option>민우</option>
-      <option>형배</option>
-      <option>동현</option>
-      <option>훈형</option>
-      <option>성민</option>
-      <option>정우</option>
-      <option>기호</option>
-      <option>유진</option>
     </select>
+
+    <script src="config.js"></script>
+    <script>
+      const select = document.getElementById("myName");
+      CONFIG.people.forEach(name => {
+        const opt = document.createElement("option");
+        opt.value = name;
+        opt.textContent = name;
+        select.appendChild(opt);
+      });
+    </script>
 
     <!-- 추첨 버튼 -->
     <button id="submitBtn">추첨 시작</button>
