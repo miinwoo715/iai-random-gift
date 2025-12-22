@@ -379,6 +379,7 @@ document.addEventListener("DOMContentLoaded", () => {
       doRerollBtn.style.background = "#e67e22";
       doRerollBtn.style.fontSize = "12px";
       
+      // [수정됨] 관리자가 재추첨 실행 버튼을 눌렀을 때
       doRerollBtn.onclick = () => {
         const selected = [...listContainer.querySelectorAll("input:checked")].map(cb => cb.value);
         if(selected.length === 0) {
@@ -386,13 +387,28 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        stateRef.update({
-          phase: "REROLL",
-          rerollTargets: selected
+        // 🔥 핵심 변경사항: Transaction을 사용하여 상태를 한방에 변경
+        stateRef.transaction(state => {
+          if (!state) return state;
+
+          // 1. 선택된 사람들의 선물을 강제로 '압수' (assignedTo = null)
+          // 이렇게 해야 바닥(available pool)에 선물들이 쌓이고 섞입니다.
+          state.giftPool.forEach(g => {
+            if (selected.includes(g.assignedTo)) {
+              g.assignedTo = null; 
+            }
+          });
+
+          // 2. 상태 변경
+          state.phase = "REROLL";
+          state.rerollTargets = selected;
+
+          return state;
         });
 
-        alert(`${selected.join(", ")} 님에게 재추첨 기회를 부여했습니다!`);
+        alert(`${selected.join(", ")} 님의 선물을 회수했습니다!\n이제 해당 참가자들이 버튼을 누르면 섞인 선물 중에서 뽑습니다.`);
       };
+      
       adminBox.appendChild(doRerollBtn);
     });
   }
